@@ -73,12 +73,19 @@ class LinkedList {
         let tempPtr = this.head;
         let count = 0;
 
+        if (i == 0) {
+            const temp = this.head.next;
+            this.head = temp;
+            this.size -= 1;
+            return temp.data;
+        }
+
         while (tempPtr.next !== null) {
             if (i === count) {
                 const temp = tempPtr.next;
                 tempPtr.next = temp.next;
                 this.size -= 1;
-                return this;
+                return temp.data;
             }
             tempPtr = tempPtr.next;
             count += 1;
@@ -105,11 +112,11 @@ class LinkedList {
         return reversed;
     }
 
-    reverse(){
+    reverse() {
         let first = this.head;
         let second = first.next;
         this.tail = this.head;
-        while (second){
+        while (second) {
             const temp = second.next;
             second.next = first;
             first = second;
@@ -117,23 +124,29 @@ class LinkedList {
         }
         this.head.next = null;
         this.head = first;
+        return this;
     }
 }
 
-const ll = new LinkedList();
-ll.append(10);
-ll.append(5);
-ll.append(2);
-ll.append(1);
-ll.prepend(20);
-ll.prepend(40);
-ll.prepend(80);
-ll.insert(0, 60);
-ll.insert(2, 30);
-ll.insert(4, 15);
-ll.insert(1000, 0);
-ll.remove(9);
+const test = () => {
+    const ll = new LinkedList();
+    ll.append(10);
+    ll.append(5);
+    ll.append(2);
+    ll.append(1);
+    ll.prepend(20);
+    ll.prepend(40);
+    ll.prepend(80);
+    ll.insert(0, 60);
+    ll.insert(2, 30);
+    ll.insert(4, 15);
+    ll.insert(1000, 0);
+    // ll.display();
+    ll.remove(0);
+    ll.display();
+    ll.reverse();
+    ll.display();
+}
 
-ll.display();
-ll.reverse();
-ll.display();
+// test();
+export { LinkedList }
