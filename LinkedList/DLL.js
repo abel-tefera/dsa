@@ -2,10 +2,11 @@ class Node {
     constructor(data) {
         this.data = data;
         this.next = null;
+        this.prev = null;
     }
 }
 
-class LinkedList {
+class DoublyLinkedList {
     constructor() {
         this.head = null;
         this.tail = null;
@@ -13,12 +14,29 @@ class LinkedList {
     }
 
     display() {
+        console.log("--------------------")
+        this.displayForw();
+        this.displayRev();
+        console.log(`\nSize: ${this.size}`)
+        console.log("--------------------")
+    }
+
+    displayForw() {
         let tempPtr = this.head;
         while (tempPtr !== null) {
             process.stdout.write(`${tempPtr.data} -> `);
             tempPtr = tempPtr.next;
         }
-        console.log(`\nSize: ${this.size}`)
+        console.log("\n")
+    }
+
+    displayRev() {
+        let tempPtr = this.tail;
+        while (tempPtr !== null) {
+            process.stdout.write(`${tempPtr.data} -> `);
+            tempPtr = tempPtr.prev;
+        }
+        console.log("\n")
     }
 
     createHeadIfNull(node) {
@@ -35,6 +53,7 @@ class LinkedList {
         if (this.createHeadIfNull(node)) return this;
 
         this.tail.next = node;
+        node.prev = this.tail;
         this.tail = node;
         this.size += 1;
         return this;
@@ -44,6 +63,7 @@ class LinkedList {
         const node = new Node(n);
         if (this.createHeadIfNull(node)) return this;
 
+        this.head.prev = node;
         node.next = this.head;
         this.head = node;
         this.size += 1;
@@ -55,11 +75,14 @@ class LinkedList {
         let count = 0;
         const node = new Node(n);
         if (this.createHeadIfNull(node)) return this;
+
         while (tempPtr.next !== null) {
             if (count === i) {
-                const temp = tempPtr.next
+                const temp = tempPtr.next;
+                temp.prev = node;
                 node.next = temp;
                 tempPtr.next = node;
+                node.prev = tempPtr;
                 this.size += 1;
                 return this;
             }
@@ -77,6 +100,7 @@ class LinkedList {
             if (i === count) {
                 const temp = tempPtr.next;
                 tempPtr.next = temp.next;
+                temp.next.prev = tempPtr;
                 this.size -= 1;
                 return this;
             }
@@ -89,18 +113,15 @@ class LinkedList {
     }
 }
 
-const ll = new LinkedList();
-ll.append(10);
-ll.append(5);
-ll.append(2);
-ll.append(1);
-ll.prepend(20);
-ll.prepend(40);
-ll.prepend(80);
-ll.insert(0, 60);
-ll.insert(2, 30);
-ll.insert(4, 15);
-ll.insert(1000, 0);
-ll.display();
-ll.remove(9);
+const ll = new DoublyLinkedList();
+ll.append(100);
+ll.append(50);
+ll.append(25);
+ll.append(12);
+ll.append(6);
+ll.append(3);
+ll.insert(2, 20);
+ll.insert(4, 8);
+ll.insert(7, 1);
+ll.remove(3);
 ll.display();
