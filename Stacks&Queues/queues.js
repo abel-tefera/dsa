@@ -1,3 +1,5 @@
+// Implementing Queues using Arrays is BAD
+
 class Queue {
     constructor() {
         this.elements = []
