@@ -87,6 +87,37 @@ class LinkedList {
         // this.tail = null;
         // this.size -= 1;
     }
+
+    reverseBad() {
+        const stack = [];
+        const reversed = new this.constructor();
+        let tempPtr = this.head;
+
+        while (tempPtr !== null) {
+            stack.push(tempPtr.data);
+            tempPtr = tempPtr.next
+        }
+
+        stack.reverse().forEach((el) => {
+            reversed.append(el);
+        })
+
+        return reversed;
+    }
+
+    reverse(){
+        let first = this.head;
+        let second = first.next;
+        this.tail = this.head;
+        while (second){
+            const temp = second.next;
+            second.next = first;
+            first = second;
+            second = temp;
+        }
+        this.head.next = null;
+        this.head = first;
+    }
 }
 
 const ll = new LinkedList();
@@ -101,6 +132,8 @@ ll.insert(0, 60);
 ll.insert(2, 30);
 ll.insert(4, 15);
 ll.insert(1000, 0);
-ll.display();
 ll.remove(9);
+
+ll.display();
+ll.reverse();
 ll.display();
