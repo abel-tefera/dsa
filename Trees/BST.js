@@ -11,6 +11,8 @@ class BinarySearchTree {
         this.root = null;
     }
     insert(value) {
+        if (value === null) return;
+
         const node = new Node(value);
 
         if (this.root === null) {
@@ -137,8 +139,8 @@ tree.insert(170)
 tree.insert(15)
 tree.insert(1)
 
-console.log(tree.lookup(20));
-console.log(JSON.stringify(traverse(tree.root)))
+// console.log(tree.lookup(20));
+// console.log(JSON.stringify(traverse(tree.root)))
 
 //     9
 //  4     20
@@ -151,4 +153,5 @@ function traverse(node) {
     return tree;
 }
 
+export { BinarySearchTree };
 
