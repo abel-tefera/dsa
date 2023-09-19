@@ -7,20 +7,17 @@
 
 const fibonacciIterative = (n) => {
     let sequence = [0, 1];
-    let index = 1;
     for (let i = 2; i <= n; i++) {
-        sequence.push(sequence[i - 1] + sequence[i - 2]);
-        index += 1;
+        sequence.push(sequence[1] + sequence[0]);
+        sequence.shift(); 
     }
     return sequence.pop();
 }
 
 // Slow
 const fibonacciRecursive = (n) => {
-    if (n === 0) {
-        return 0
-    } else if (n === 1) {
-        return 1;
+    if (n < 2) {
+        return n
     }
     return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2)
 }
@@ -29,7 +26,6 @@ const fibonacciDp = (n, dp = {
     0: 0,
     1: 1
 }, count = 1) => {
-    debugger;
     if (n === count) {
         return dp[1];
     }
@@ -41,7 +37,7 @@ const fibonacciDp = (n, dp = {
 }
 
 console.time('Iterative')
-console.log(fibonacciIterative(1000));
+console.log(fibonacciIterative(1200));
 console.timeEnd('Iterative')
 
 // console.time('Recursive')
@@ -49,5 +45,5 @@ console.timeEnd('Iterative')
 // console.timeEnd('Recursive')
 
 console.time('Dp')
-console.log(fibonacciDp(1000)); 
+console.log(fibonacciDp(1200));
 console.timeEnd('Dp')
