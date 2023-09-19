@@ -17,4 +17,8 @@ const insertionSort = (arr) => {
     return arr;
 }
 
-console.log(insertionSort([6, 5, 3, 1, 8, 7, 2, 4]));
+const exArr = [...Array(10000)].map(() => Math.floor(Math.random() * 50000));
+
+console.time("Insertion");
+insertionSort(exArr);
+console.timeEnd("Insertion");
