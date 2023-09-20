@@ -5,10 +5,14 @@ const quickSort = (arr) => {
     let rightIndex = length - 1;
 
     while (leftIndex < rightIndex) {
+        let temp;
         if (arr[leftIndex] > pivot) {
-            arr.push(arr[leftIndex]);
-            arr.splice(leftIndex, 1, arr[rightIndex - 1]);
-            arr.splice(rightIndex - 1, 1);
+            temp = arr[rightIndex];
+
+            arr[rightIndex] = arr[leftIndex];
+            arr[leftIndex] = arr[rightIndex - 1];
+            arr[rightIndex - 1] = temp;
+
             rightIndex -= 1;
         } else {
             leftIndex += 1;
@@ -18,22 +22,28 @@ const quickSort = (arr) => {
     return [...arr, rightIndex];
 }
 
-const quickSortHelper = (arr, pivotIdx) => {
-    if (arr.length <= 2) return arr;
+const quickSortHelper = (arr, pivotIdx = null) => {
+    if (arr.length <= 1) {
+        return arr
+    } else if (pivotIdx === null) {
+        debugger;
+        arr = quickSort(arr);
+        pivotIdx = arr.pop();
+    };
+
     let left, right, leftIdx, rightIdx;
     left = arr.slice(0, pivotIdx);
+    right = arr.slice(pivotIdx + 1);
 
-    if (arr.length % 2 === 0) {
-        right = arr.slice(pivotIdx);
-    } else {
-        right = arr.slice(pivotIdx + 1);
+    if (left.length > 0) {
+        left = quickSort(left);
+        leftIdx = left.pop();
     }
 
-    left = quickSort(left);
-    leftIdx = left.pop();
-    
-    right = quickSort(right);
-    rightIdx = right.pop();
+    if (right.length > 0) {
+        right = quickSort(right);
+        rightIdx = right.pop();
+    }
 
     const leftDone = quickSortHelper(left, leftIdx);
     const rightDone = quickSortHelper(right, rightIdx);
@@ -42,19 +52,14 @@ const quickSortHelper = (arr, pivotIdx) => {
     return leftDone;
 }
 
-const quickSortMain = (arr) => {
-    arr = quickSort(arr);
-    const pivotIdx = arr.pop();
+// console.log(quickSortHelper([99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0]))
+// console.log(quickSortHelper([3, 7, 8, 5, 2, 1, 9, 5, 4]))
+// console.log(quickSortHelper([6, 5, 3, 1, 8, 7, 2, 4]))
 
-    return quickSortHelper(arr, pivotIdx);
-}
+// const exArr = [...Array(10000)].map(() => Math.floor(Math.random() * 50000));
 
-// console.log(quickSortMain([99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0]))
-// console.log(quickSortMain([3, 7, 8, 5, 2, 1, 9, 5, 4]))
-// console.log(quickSortMain([6, 5, 3, 1, 8, 7, 2, 4]))
+// console.time("Quick");
+// quickSortHelper(exArr);
+// console.timeEnd("Quick");
 
-const exArr = [...Array(10000)].map(() => Math.floor(Math.random() * 50000));
-
-console.time("Quick");
-quickSortMain(exArr);
-console.timeEnd("Quick");
+export { quickSortHelper }
