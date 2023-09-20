@@ -17,8 +17,11 @@ const insertionSort = (arr) => {
     return arr;
 }
 
-const exArr = [...Array(10000)].map(() => Math.floor(Math.random() * 50000));
+export { insertionSort }
 
-console.time("Insertion");
-insertionSort(exArr);
-console.timeEnd("Insertion");
+
+// const exArr = [...Array(10000)].map(() => Math.floor(Math.random() * 50000));
+
+// console.time("Insertion");
+// insertionSort(exArr);
+// console.timeEnd("Insertion");

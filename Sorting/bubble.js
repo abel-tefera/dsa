@@ -16,5 +16,7 @@ const bubbleSort = (arr) => {
 
 };
 
-console.log(bubbleSort([6, 5, 3, 1, 8, 7, 2, 4]))
-console.log(bubbleSort([3, 7, 8, 5, 2, 1, 9, 5, 4]))
+export { bubbleSort }
+// console.log(bubbleSort([6, 5, 3, 1, 8, 7, 2, 4]))
+// console.log(bubbleSort([3, 7, 8, 5, 2, 1, 9, 5, 4]))
+// console.log(bubbleSort([99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0]))
