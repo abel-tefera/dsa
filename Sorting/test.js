@@ -12,25 +12,25 @@ const original = [...exArr];
 console.time('Bubble');
 const bubble = bubbleSort(exArr);
 console.timeEnd('Bubble');
-exArr = original;
+exArr = [...original];
 
 // Selection sort
 console.time('Selection');
 const selection = selectionSort(exArr)
 console.timeEnd('Selection');
-exArr = original;
+exArr = [...original];
 
 // Insertion sort
 console.time('Insertion');
 const insertion = insertionSort(exArr)
 console.timeEnd('Insertion');
-exArr = original;
+exArr = [...original];
 
 // Merge sort
 console.time('Merge');
 const merge = mergeSort(exArr)
 console.timeEnd('Merge');
-exArr = original;
+exArr = [...original];
 
 // Quick sort
 console.time('Quick');
