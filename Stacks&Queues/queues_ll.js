@@ -14,7 +14,7 @@ class Queue {
     }
 }
 
-const test = () => {
+const demo = () => {
     const queue = new Queue();
     queue.enqueue(10);
     queue.enqueue(20);
@@ -28,4 +28,4 @@ const test = () => {
     console.log(queue.elements.display());
 }
 
-test();
+demo();

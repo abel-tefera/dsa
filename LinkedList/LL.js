@@ -128,7 +128,7 @@ class LinkedList {
     }
 }
 
-const test = () => {
+const demo = () => {
     const ll = new LinkedList();
     ll.append(10);
     ll.append(5);
@@ -148,5 +148,5 @@ const test = () => {
     ll.display();
 }
 
-// test();
+// demo();
 export { LinkedList }
