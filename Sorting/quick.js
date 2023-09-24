@@ -48,8 +48,8 @@ const quickSortHelper = (arr, pivotIdx = null) => {
     const leftDone = quickSortHelper(left, leftIdx);
     const rightDone = quickSortHelper(right, rightIdx);
 
-    leftDone.push(arr[pivotIdx], ...rightDone);
-    return leftDone;
+    // leftDone.push(arr[pivotIdx], ...rightDone);
+    return [...leftDone, arr[pivotIdx], ...rightDone];
 }
 
 // console.log(quickSortHelper([99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0]))

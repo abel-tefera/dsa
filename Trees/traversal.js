@@ -46,7 +46,7 @@ const preorder = (root, nodes = []) => {
   //   return nodes;
   // }
   
-  var tree = {
+  const tree = {
     val: 10,
     left: {
       val: 5,
